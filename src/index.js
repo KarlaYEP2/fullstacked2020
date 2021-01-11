@@ -5,18 +5,26 @@ import './index.css';
 const Header = (props) => { 
     return (
         <div>
-      <h1>Header {props.course}</h1>
+      <h1>{props.course}</h1>
           </div>  
 )
 }
-
+const Part = (props) => {
+return (
+<div>
+  <p>part {props.part}, exercises {props.exercises}</p>
+</div>
+)
+}
 
 const Content = (props) => {
   return (
   <div>
-    <p>part1 {props.part1},exercises{props.exercises1}</p>
-    <p>part2 {props.part2},exercises{props.exercises2}</p>
-    <p>part3 {props.part3},exercises{props.exercises3}</p>
+    <Part part={props.part1}
+      exercises={props.exercises1}/>
+    <Part exercises={props.exercises2} part={props.part2}/>
+    <Part exercises={props.exercises3} part={props.part3}/>
+
   </div>
   )
 }
