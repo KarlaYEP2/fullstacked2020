@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css';
 
+const Statistic = (props) => {
+  return(
+    <p>{props.text} {props.value}</p>
+  )
+}
 
 // a proper place to define a component
 const Statistics = (props) => {
@@ -15,17 +20,21 @@ const Statistics = (props) => {
   return (
     <div>
     <h1>Statistics</h1>
-    <p>good  {props.good}</p> 
-    <p>neutral  {props.neutral}</p>
-    <p>bad  {props.bad}</p>
-    <p>all {props.good + props.neutral + props.bad}</p>
-    <p>average {(props.good - props.bad) / (props.good + props.neutral +props.bad)}</p>
-      <p>percentage {(100 * props.good) / (props.good+props.neutral+props.bad)}%</p>
+    <Statistic text="good" value ={props.good} />
+    <Statistic text="neutral" value ={props.neutral} />
+    <Statistic text="bad" value ={props.bad} />
+    <Statistic text="all" value ={props.good + props.neutral + props.bad} />
+    <Statistic text="average" value ={(props.good - props.bad) / (props.good + props.neutral +props.bad)} />
+    <Statistic text="percentage" value ={(100 * props.good) / (props.good+props.neutral+props.bad)} />
     </div>
   )
 }
-
-
+const Button = (props) => {
+  return(
+    <button onClick={() => props.setValue(props.value + 1)}>{props.text}</button>
+  )
+  }
+  
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -34,17 +43,11 @@ const App = () => {
   return (
     <div>
        <h1>Give Feedback</h1>     
-       <button onClick={() => setGood(good + 1)}>
-        good
-      </button>
-      <button onClick={() => setNeutral(neutral + 1)}>
-        neutral
-      </button>
-      <button onClick={() => setBad(bad + 1)}>
-        bad
-      </button>
-  <Statistics good={good} neutral={neutral} bad={bad}/>
-  </div>
+        <Button value={good} text={"good"} setValue={setGood}/>
+        <Button value={neutral} text={"neutral"} setValue={setNeutral}/>
+        <Button value={bad} text={"bad"} setValue={setBad}/>
+       <Statistics good={good} neutral={neutral} bad={bad}/>  </div>
+
 
   )
 }
@@ -59,11 +62,7 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-    <div>
-    <h1>Statistics</h1>
-    <Statistic text="good" value={props.good} />
-    <Statistic text="neutral" value={props.neutral}  />
-    <Statistic text="bad" value={}  />
+
   return (
     <div>
       <h1>Give Feedback</h1>
