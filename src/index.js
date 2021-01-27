@@ -5,6 +5,13 @@ import './index.css';
 
 // a proper place to define a component
 const Statistics = (props) => {
+  if (props.good + props.neutral + props.bad===0) {
+    return(
+      <div>
+        <h1>no Statistics</h1>
+      </div>
+    )
+  }
   return (
     <div>
     <h1>Statistics</h1>
@@ -17,6 +24,7 @@ const Statistics = (props) => {
     </div>
   )
 }
+
 
 const App = () => {
   const [good, setGood] = useState(0)
